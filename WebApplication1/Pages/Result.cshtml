@@ -1,0 +1,14 @@
+﻿@page
+@model WebApplication1.Pages.ResultModel
+@{
+    ViewData["Title"] = "Result Page";
+}
+
+<h3>Result </h3>
+
+<div>
+    <h6>Missing Ad <em>No:</em> @Model.Missing_Ad </h6>
+    <h6><pre>Left budget for this ad: @Model.Result</pre></h6>
+</div>
+
+<a href="/Index">Back to calculations</a>

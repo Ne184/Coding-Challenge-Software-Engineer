@@ -1,0 +1,128 @@
+﻿@page
+@model IndexModelTest
+@{
+    ViewData["Title"] = "Home";
+}
+@* <!DOCTYPE html>
+<html lang="en"> *@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            width: 400px; /* Adjust as needed */
+            margin-right: auto;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            width: 80%; /* Adjust as needed */
+        }
+
+        .form-group input {
+            width: 20%; /* Adjust as needed */
+        }
+
+        .formula-container {
+            margin-left: 200px;
+            text-align: center;
+        }
+        .formula-legend {
+            margin-left: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form class="form-container" method="post" id="myForm" enctype="multipart/form-data">
+        <div class="form-group">
+            <label>Total campaign budget (Z):</label>
+            <input type="number" asp-for="Z" step="any" min="0" required> 
+        </div>
+        <div class="form-group">
+            <label>Agency fee in % (Y1):</label>
+                <input type="number" asp-for="Y1" min="0" max="100" step="any" required>
+        </div>
+        <div class="form-group">
+            <label>Third-party tool fee in % (Y2):</label>
+                <input type="number" asp-for="Y2" min="0" max="100" step="any" required> @* max="100" *@
+        </div>
+        <div class="form-group">
+            <label>Fixed cost (HOURS):</label>
+            <input type="number" asp-for="HOURS" min="0" step="any" required>
+        </div>
+        <div class="form-group">
+            <label>Number of ads:</label>
+                <input type="number" asp-for="number_of_ads" min="1" required>
+            </div>
+        <div class="form-group">
+            <label>Calculate budget for ad <em>No:</em></label>
+            <input type="number" asp-for="missing_ad" min="1" required> 
+        </div>
+
+            <span id="error-msg" style="color: red;">@Model.error_message</span>
+
+        <br>
+        <div>
+            <label>Upload in csv the budget for each of the other ads.
+                <br> Include the missing ad with budget -1.</label><br>
+                <input type="file" id="file" asp-for="uploaded_file" accept=".csv" required>
+        </div>
+        <br>
+        <div class="form-group">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+        <div>
+            <div class="formula-container">
+                <h3>Campaign Media Planning Formula</h3>
+                    <p>
+                        The formula to calculate the total campaign budget is:
+                    </p>
+                    <p>
+                        <strong>
+                            Z=X+Z⋅X+Y1⋅X+Y2⋅(X1+X2+X4)+HOURS
+                        </strong>
+                    </p>
+                </div>
+            <div class="formula-legend">
+                    <p>
+                    <strong>
+                        X </strong>
+                        = Total ad spend. <br>
+                    <strong>
+                        Xi
+                    </strong> = Budget for each ad.
+                    <br>
+                    <strong>
+                        X
+                    </strong>=X1+X2+…+Xn
+                    <br>
+                    <strong>
+                        Y1
+                    </strong> = Agency fee percentage.
+                    <br>
+                    <strong>
+                        Y2
+                    </strong> = Third-party tool fee percentage.
+                    <br>
+                    <strong>
+                        HOURS
+                    </strong> = Fixed cost for agency hours.
+                    </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
