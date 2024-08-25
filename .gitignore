@@ -17,6 +17,10 @@
 *.*.cs
 *.editorconfig
 *LICENSE*
-*TestProject1
+*_TestProject1
 \.suo
 *.exe
+*.user
+*.pubxml
+WebApplication1/obj/Release/net8.0/
+WebApplication1/bin/Release/net8.0/
